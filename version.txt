@@ -1,0 +1,4 @@
+#define ENGINE_NAME ipedu_shared
+#define ENGINE_VERSION_MAJOR 1.0
+#define ENGINE_VERSION_MINOR 1001
+#define ENGINE_VERSION_PATCH 0

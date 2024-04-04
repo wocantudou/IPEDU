@@ -1,0 +1,7 @@
+LIBRARY    "iflytek_cv3_pack_unpack_sharedd"
+EXPORTS
+     MallocFileBuff								@1
+	 FreeFileBuff								@2
+	 SaveFileBuff								@3
+	 pack										@4
+	 unpack										@5

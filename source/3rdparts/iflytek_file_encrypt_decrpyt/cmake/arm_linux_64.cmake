@@ -1,0 +1,45 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
+set(AARCH64 ON)
+set (PREFIX "/usr/local/bin/gcc-5.5.0/bin/aarch64-unknown-linux-gnu-")
+#set (PREFIX "/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-")
+set (CMAKE_STRIP ${PREFIX}strip CACHE FILEPATH "Strip")
+set (CMAKE_NM  ${PREFIX}gcc-nm CACHE FILEPATH "NM")
+set (CMAKE_RANLIB  ${PREFIX}gcc-ranlib CACHE FILEPATH "Ranlib")
+set (CMAKE_AR ${PREFIX}gcc-ar CACHE FILEPATH "Archiver")
+set (CMAKE_C_COMPILER ${PREFIX}gcc CACHE FILEPATH "GCC")
+set (CMAKE_CXX_COMPILER ${PREFIX}g++ CACHE FILEPATH "G++")
+#set (CMAKE_GCC_VERSION 10 CACHE STRING "" FORCE)
+
+message(STATUS "---------CMAKE_STRIP = ${CMAKE_STRIP}")
+message(STATUS "---------CMAKE_NM = ${CMAKE_NM}")
+message(STATUS "---------CMAKE_RANLIB = ${CMAKE_RANLIB}")
+message(STATUS "---------CMAKE_AR = ${CMAKE_AR}")
+message(STATUS "---------CMAKE_C_COMPILER = ${CMAKE_C_COMPILER}")
+message(STATUS "---------CMAKE_CXX_COMPILER = ${CMAKE_CXX_COMPILER}")
+#message(STATUS "---------CMAKE_GCC_VERSION = ${CMAKE_GCC_VERSION}")
+
+set(CMAKE_FIND_ROOT_PATH "...")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+set(CPP11  "-std=c++11")
+
+add_definitions(-DUSE_ARMLINUX_64)
+add_definitions(-D__ARM_NEON__)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -fvisibility=hidden -fPIC -O2 -ftree-vectorize -pipe -no-canonical-prefixes -march=armv8-a")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CPP11} -pthread -fpermissive -fvisibility=hidden -fPIC -O2 -ftree-vectorize -pipe -no-canonical-prefixes -march=armv8-a")
+
+#for cryptopp
+add_definitions(-D__aarch64__)
+set(output_dir  "./output")
+if(BUILD_AMBA)
+    set (bin_dir "${output_dir}/bin/amba")
+    set (lib_dir "${output_dir}/lib/amba")
+else()
+    set (bin_dir "${output_dir}/bin/armlinux64")
+    set (lib_dir "${output_dir}/lib/armlinux64")
+endif()
+
