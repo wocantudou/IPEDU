@@ -29,3 +29,21 @@ set(CPP11  "-std=c++11")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -fvisibility=hidden -fPIC -O2 -ftree-vectorize -pipe -no-canonical-prefixes -march=armv8-a")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CPP11} -pthread -fpermissive -fvisibility=hidden -fPIC -O2 -ftree-vectorize -pipe -no-canonical-prefixes -march=armv8-a")
 
+set(output_dir  "${PROJECT_SOURCE_DIR}/output")
+set (bin_dir "${output_dir}/bin/aarch64_linux")
+set (lib_dir "${output_dir}/lib/aarch64_linux")
+
+if(NOT DEFINED CMAKE_LIBRARY_OUTPUT_DIRECTORY)
+	set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${bin_dir}")
+	message(STATUS "############set CMAKE_LIBRARY_OUTPUT_DIRECTORY : ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ")
+endif()
+
+if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
+	set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${bin_dir}")
+	message(STATUS "############set CMAKE_RUNTIME_OUTPUT_DIRECTORY : ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ")
+endif()
+
+if(NOT DEFINED CMAKE_ARCHIVE_OUTPUT_DIRECTORY)
+	set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${lib_dir}")
+	message(STATUS "############set CMAKE_ARCHIVE_OUTPUT_DIRECTORY : ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY} ")
+endif()

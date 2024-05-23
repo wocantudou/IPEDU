@@ -1,5 +1,5 @@
 #  Minimum verion cmake required
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.5)
 
 #  Project
 project  (ENCRYPT C CXX)
@@ -15,12 +15,6 @@ link_directories(${PROJECT_SOURCE_DIR}/lib)
     set(CMAKE_RELEASE_POSTFIX "")
   endif()
   
-option(BUILD_INTEL_64       		    "Use intel linux 64 platform for engine."         				OFF)
-option(BUILD_ARMLINUX_32       		  "Use arm linux32 platform for engine."         					  OFF)
-option(BUILD_ARMLINUX_64       		  "Use arm linux64 platform for engine."         					  OFF)
-option(BUILD_ARMEABI_V7A       		  "Use android armeabi-v7a platform for engine."         		OFF)
-option(BUILD_ARM64_V8A       		    "Use android arm64-v8a platform for engine."         			OFF)
-option(BUILD_QNX700      			      "Use qnx7.0.0 platform for engine."         					    OFF)
 option(BUILD_ENCRYPT_TEST      		  "Build test."         											              OFF)
 
 include(${PROJECT_SOURCE_DIR}/platform.cmake)

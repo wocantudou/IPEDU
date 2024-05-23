@@ -36,18 +36,6 @@ else ()
 			
 		else()
 			list(APPEND thirdparty_lib "dl")
-			if(BUILD_INTEL_64)
-				
-			endif()
-			if(BUILD_ARMLINUX_64)
-				
-			endif()
-			if(BUILD_ARMLINUX_32)
-				
-			endif()
-			if(BUILD_IOS64)
-				list(APPEND thirdparty_lib "")
-			endif()
 		endif()	
 	endif ()
 endif ()

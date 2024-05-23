@@ -26,20 +26,24 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(CPP11  "-std=c++11")
-
-add_definitions(-DUSE_ARMLINUX_64)
-add_definitions(-D__ARM_NEON__)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -fvisibility=hidden -fPIC -O2 -ftree-vectorize -pipe -no-canonical-prefixes -march=armv8-a")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CPP11} -pthread -fpermissive -fvisibility=hidden -fPIC -O2 -ftree-vectorize -pipe -no-canonical-prefixes -march=armv8-a")
 
-#for cryptopp
-add_definitions(-D__aarch64__)
-set(output_dir  "./output")
-if(BUILD_AMBA)
-    set (bin_dir "${output_dir}/bin/amba")
-    set (lib_dir "${output_dir}/lib/amba")
-else()
-    set (bin_dir "${output_dir}/bin/armlinux64")
-    set (lib_dir "${output_dir}/lib/armlinux64")
+set(output_dir  "${PROJECT_SOURCE_DIR}/output")
+set (bin_dir "${output_dir}/bin/aarch64_linux")
+set (lib_dir "${output_dir}/lib/aarch64_linux")
+
+if(NOT DEFINED CMAKE_LIBRARY_OUTPUT_DIRECTORY)
+	set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${bin_dir}")
+	message(STATUS "############set CMAKE_LIBRARY_OUTPUT_DIRECTORY : ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ")
 endif()
 
+if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
+	set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${bin_dir}")
+	message(STATUS "############set CMAKE_RUNTIME_OUTPUT_DIRECTORY : ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ")
+endif()
+
+if(NOT DEFINED CMAKE_ARCHIVE_OUTPUT_DIRECTORY)
+	set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${lib_dir}")
+	message(STATUS "############set CMAKE_ARCHIVE_OUTPUT_DIRECTORY : ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY} ")
+endif()
